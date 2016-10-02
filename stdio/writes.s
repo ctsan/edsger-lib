@@ -20,7 +20,7 @@ doPrint:
             mov     rsi, rdi
             mov     rdi, 1
             mov     rdx, rax
-            mov     rax, 0x20000004 # For Mac 0x2000004
+            mov     rax, 4  # Mac Version 0x2000004 
             syscall
 ok:
             pop     rsi

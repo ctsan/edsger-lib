@@ -28,7 +28,7 @@ doRead:
                 mov     byte ptr [rsi], 0x00
                 xor     rax, rax
                 mov     rdi, rax
-                mov     rax, 0x2000003
+                #mov     rax, 0x2000003          # for MACOS
                 syscall                         # read syscall, reads up to $rdx bytes
                 or      rax, rax                # nothing read
                 jz      finish                  #
