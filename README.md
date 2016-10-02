@@ -11,8 +11,8 @@ coming soon
 
 ## Functions implemented so far
 
-readString : stack int, stack char\* -> -
-writeString : stack char\* -> -
+    readString  : stack int, stack char\* -> -
+    writeString : stack char\* -> -
 
 ## Active Maintainers
 
