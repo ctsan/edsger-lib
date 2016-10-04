@@ -1,3 +1,7 @@
 test.*
 auxil/formatr_old.fasm
-/Makefile
+**/*.o
+**/*.a
+**/*.swp
+**/*.un~
+
