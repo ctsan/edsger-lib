@@ -1,0 +1,3 @@
+#define SYSCALL_EXIT       0x2000001
+#define SYSCALL_READ       0x2000003
+#define SYSCALL_WRITE      0x2000004

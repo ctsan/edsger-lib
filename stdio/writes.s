@@ -1,17 +1,20 @@
-.intel_syntax noprefix
-            .global _writeString
+; void writeString (char * s);
+; ----------------------------
+; This function prints a null terminated string to the standard output.
+
+
+            section .code
+            global _writeString
 
 _writeString:
             push    rbp
             mov     rbp, rsp
             push    rdi
             push    rsi
-
-            mov     rdi, [rbp+32]
             mov     rsi, rdi
             xor     rax, rax
 calcLen:
-            cmp     byte ptr [rsi], 0x0
+            cmp     byte [rsi], 0x0
             jz      doPrint
             inc     rax
             inc     rsi
@@ -20,7 +23,7 @@ doPrint:
             mov     rsi, rdi
             mov     rdi, 1
             mov     rdx, rax
-            mov     rax, 4  # Mac Version 0x2000004 
+            mov     rax, 1
             syscall
 ok:
             pop     rsi

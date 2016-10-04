@@ -1,13 +1,13 @@
-# Edsger Library x86/64 (Linux & Mac)
+# (WIP) Edsger Library x86/64 (Linux & Mac)
 
-This is an x86/64 library for Edsger Programming Language. This lib "forks" parts
-that don't need to change from this repo: /abenetopoulos/edsger\_lib since the purpose
-is the same, but the Calling Convention that this repo will implement follows a stack
-oriented approach.
+This is an x86/64 library for Edsger Programming Language. This lib is a fork of this
+repo: /abenetopoulos/edsger\_lib but it follows a stack oriented approach instead. If
+you are using the standard calling convention, passing arguments through a stack, you 
+should stick to the original repo.
 
 ## How To Compile
 
-coming soon
+    make
 
 ## Functions implemented so far
 
