@@ -1,17 +1,18 @@
-; function formatInteger (var buffer : array of char; i : integer;
-;                         width, flags, base : byte) : byte
-; ----------------------------------------------------------------
-; This procedure formats an integer for printing.
-; 
+/* function formatInteger (var buffer : array of char; i : integer;
+                         width, flags, base : byte) : byte
+ ----------------------------------------------------------------
+ This procedure formats an integer for printing.
+*/ 
 
-            section .code
-            global  _formatInteger
+.intel_syntax noprefix
+.text
+.global _formatInteger
 
-;CHAR_SPACEPAD  equ     ' '
-;FLAG_LEFTALIGN equ     00h
-;FLAG_ZEROPAD   equ     02h
-;FLAG_UPPERCASE equ     40h
-CHAR_MINUS      equ     '-'
+/*CHAR_SPACEPAD  equ     ' '
+FLAG_LEFTALIGN equ     00h
+FLAG_ZEROPAD   equ     02h
+FLAG_UPPERCASE equ     40h*/
+
 
 _formatInteger:
             push    rbp
@@ -26,7 +27,7 @@ _formatInteger:
             jz      prepare
             not     si
             inc     si
-            mov     byte [rdi], CHAR_MINUS
+            mov     byte ptr [rdi], '-'
             inc     rdi
 prepare:
             mov     ax, 10000
@@ -44,7 +45,7 @@ mWriteDigit:
             cmp     r8, 0
             je      nextDigit
 writeDigit:
-            call    near writeDigitToMemory
+            call    writeDigitToMemory
 nextDigit:
             mov     bx, 10
             div     bx
@@ -57,12 +58,12 @@ nextDigit:
             jmp     digit
 
 finish:
-            mov     byte [rdi], 0x0
+            mov     byte ptr [rdi], 0x0
             pop     rbx
             pop     rsi
             pop     rdi
             pop     rbp
-            mov     ax, cx              ;return number of characters written
+            mov     ax, cx              /*return number of characters written*/
             and     rax, 0xff
             ret
 
@@ -71,7 +72,7 @@ writeDigitToMemory:
             mov     rbp, rsp
             mov     r8, 1
             add     bl, 0x30
-            mov     byte [rdi], bl
+            mov     byte ptr [rdi], bl
             inc     rdi
             inc     cx
             mov     bx, 0
