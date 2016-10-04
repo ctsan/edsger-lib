@@ -1,18 +1,15 @@
-; void writeInteger (int n);
-; --------------------------
-; This function prints an integer to the standard output.
+.intel_syntax noprefix
+                .text
+                .global  _writeInteger
+                .extern  _formatInteger
+                .extern  _writeString
 
-
-                section .code
-                global  _writeInteger
-                extern  _formatInteger
-                extern  _writeString
-
-_writeInteger   push    rbp
+_writeInteger:  push    rbp
                 mov     rbp, rsp
                 push    rdi
                 push    rsi
                 
+                mov     rdi, [rbp+32]
                 mov     rsi, rdi 
                 lea     rdi, [buffer]
                 call    _formatInteger
@@ -26,5 +23,5 @@ _writeInteger   push    rbp
                 pop     rbp
                 ret
 
-                section .bss
-buffer  resb 7 
+                .section bss
+.lcomm buffer, 7 
