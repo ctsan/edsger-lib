@@ -15,7 +15,7 @@ _writeInteger:  push    rbp
                 call    _formatInteger
                 
                 lea     rdi, [buffer]
-                call    _writeString
+                call    _writeRegString
                 
                 pop     rsi
                 pop     rdi
