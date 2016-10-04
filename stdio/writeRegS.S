@@ -1,14 +1,13 @@
 #include OS_SYSCALL_NUMS
 .intel_syntax noprefix
-            .global _writeString
+            .global _writeRegString
 
-_writeString:
+_writeRegString:
             push    rbp
             mov     rbp, rsp
             push    rdi
             push    rsi
 
-            mov     rdi, [rbp+32]
             mov     rsi, rdi
             xor     rax, rax
 calcLen:
