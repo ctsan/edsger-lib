@@ -1,24 +1,35 @@
-; char readChar ();
-; -----------------
-; This function reads a character from the standard input
-; and returns it.
+/* char readChar ();
+ -----------------
+ This function reads a character from the standard input
+ and returns it.
+*/
 
+#include OS_SYSCALL_NUMS
 
-            section .code
-            global  _readChar
+.intel_syntax noprefix
+                .text
+                .global _readChar
 
-_readChar   push    rbp
+_readChar:  
+            push    rax
+            push    rbp
             mov     rbp, rsp
             push    rdi
+
             sub     rsp, 4
-            mov     rsi, rsp                  ; store on stack
-            mov     rdx, 1                    ; read single character
-            mov     rdi, 0                    ; from stdin
-            mov     rax, 0                    ; using the read() syscall
+            mov     rsi, rsp                  /* store on stack */
+            mov     rdx, 1                    /* read single character */
+            mov     rdi, 0                    /* from stdin */
+            mov     rax, SYSCALL_READ         /* using the read() syscall */
             syscall
-            xor     rax, rax                  ; store it
-            mov     al, byte [rsp]
+
+            mov     al, [rsp]                 /* Result */
+            mov     rdi,[rbp+24]              /* Addr of result*/
+            mov     byte ptr [rdi], al        /* Store */
+
             add     rsp, 4
+
             pop     rdi
             pop     rbp
+            pop     rax 
             ret
