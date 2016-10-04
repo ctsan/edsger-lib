@@ -19,7 +19,9 @@ endif
 
 deps := $(wildcard **/*.S)
 
-all: $(deps)
+.PHONY:all
+
+all: 
 	# Compile All
 	@for file in **/*.S; \
 	do \
@@ -28,8 +30,8 @@ all: $(deps)
 		gcc -c `basename $$file` -D 'OS_SYSCALL_NUMS="../${OS_NUMS}"'; \
 		cd ..; \
 	done
-	@ar -cvqs ${LIBNAME} stdio/*.o # Make a lib 
-	@rm **/*.o 	               # Clean
+	@ar -cvqs ${LIBNAME} auxil/*.o stdio/*.o # Make a lib 
+	#@rm **/*.o 	               # Clean
 	@echo "DONE!"
 
 clean: 
