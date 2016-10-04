@@ -1,42 +1,44 @@
-; function parseInteger (var buffer : array of char; p : ^integer;
-;                        base : byte) : byte
-; ----------------------------------------------------------------
-; This procedure parses an integer number.  It ignores leading
-; spaces and returns the number of characters read.
+/*function parseInteger (var buffer : array of char; p : ^integer;
+                       base : byte) : byte
+----------------------------------------------------------------
+This procedure parses an integer number.  It ignores leading
+spaces and returns the number of characters read.
 
-; parse an integer from buffer, store the read integer in the address pointed to by p, and use the base encoding in base to do so
+parse an integer from buffer, store the read integer in the address pointed to by p, and use the base encoding in base to do so
 
-;KNOWN BUGS:
-;   - at the moment, we only parse decimal numbers...
+KNOWN BUGS:
+   - at the moment, we only parse decimal numbers...
+*/
 
-        section .code
-        global  _parseInteger
+.intel_syntax noprefix
+.text
+.global _parseInteger
 
 _parseInteger:
         push    rbp
         mov	    rbp, rsp
-        push    rdi                     ;push non-volatile regs
+        push    rdi                     /* push non-volatile regs */
         push    rsi
-        xor     rax, rax                ;number of chars read
-        xor     r9, r9                  ;temp result storage
-        mov     r11b, 0                 ;sign flag (perhaps an entire reg is too much?)
+        xor     rax, rax                /* number of chars read */
+        xor     r9, r9                  /* temp result storage */
+        mov     r11b, 0                 /* sign flag (perhaps an entire reg is too much?) */
 
 .ignoreWhiteSpace:
-        cmp     byte [rdi], 0x20        
+        cmp     byte ptr [rdi], 0x20        
         jnz     .readSign
         inc     rdi
         jmp     .ignoreWhiteSpace 
 .readSign:
-        cmp     byte [rdi], 0x2d
+        cmp     byte ptr [rdi], 0x2d
         jnz     .readDec
         mov     r11b, 1
         inc     rdi
 .readDec:
-        cmp     byte [rdi], 0x30
+        cmp     byte ptr [rdi], 0x30
         jl      .applySign
-        cmp     byte [rdi], 0x39
+        cmp     byte ptr [rdi], 0x39
         jg      .applySign
-        mov     r10b, byte [rdi]
+        mov     r10b, byte ptr [rdi]
         sub     r10b, 0x30
         and     r10,0xff
         imul    r9, 10
@@ -63,7 +65,7 @@ _parseInteger:
         mov     rax, -1
 .finish: 
         pop     rsi
-        mov     word [rsi], r9w
+        mov     word ptr [rsi], r9w
         pop     rdi
         pop     rbp
         ret
