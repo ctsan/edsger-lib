@@ -11,10 +11,10 @@ _writeInteger:  push    rbp
                 
                 mov     rdi, [rbp+32]
                 mov     rsi, rdi 
-                lea     rdi, [buffer]
+                lea     rdi,[rip+buffer]
                 call    _formatInteger
-                
-                lea     rdi, [buffer]
+
+                lea     rdi,[rip+buffer]
                 call    _writeRegString
                 
                 pop     rsi
@@ -23,5 +23,5 @@ _writeInteger:  push    rbp
                 pop     rbp
                 ret
 
-                .section bss
+.bss
 .lcomm buffer, 7 

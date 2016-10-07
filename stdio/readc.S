@@ -7,14 +7,12 @@
 #include OS_SYSCALL_NUMS
 
 .intel_syntax noprefix
-                .text
-                .global _readChar
+            .text
+            .global _readChar
 
 _readChar:  
-            push    rax
             push    rbp
             mov     rbp, rsp
-            push    rdi
 
             sub     rsp, 4
             mov     rsi, rsp                  /* store on stack */
@@ -29,7 +27,5 @@ _readChar:
 
             add     rsp, 4
 
-            pop     rdi
             pop     rbp
-            pop     rax 
             ret

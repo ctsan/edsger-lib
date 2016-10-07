@@ -27,7 +27,7 @@ all:
 	do \
 		dir=`dirname $$file`; \
 		cd $$dir; \
-		gcc -c `basename $$file` -D 'OS_SYSCALL_NUMS="../${OS_NUMS}"'; \
+		gcc -g -c `basename $$file` -D 'OS_SYSCALL_NUMS="../${OS_NUMS}"'; \
 		cd ..; \
 	done
 	@ar -cvqs ${LIBNAME} auxil/*.o stdio/*.o # Make a lib 
