@@ -16,7 +16,7 @@
 
 _readInteger:   push    rbp
                 mov     rbp, rsp
-                push    rsi
+
                 mov     rdi, 256
                 lea     rsi, [rip+inpstr]
                 call    _readString              /* Read a string */
@@ -27,10 +27,10 @@ _readInteger:   push    rbp
                 call    _parseInteger            /* result in rax */
 
                 mov     ax, word ptr [rsi]
-                mov     rsi, [rbp+24]         /* addr of result */
-                mov     word ptr [rsi], ax    /* store result */
+                mov     rdi, [rbp+24]         /* addr of result */
+                mov     word ptr [rdi], ax    /* store result */
 
-                pop     rsi
+                mov     rsp, rbp
                 pop     rbp
                 ret
 .bss
