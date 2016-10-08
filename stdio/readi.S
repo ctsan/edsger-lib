@@ -11,7 +11,7 @@
 
 .text
 .global    _readInteger
-.extern    _readString
+.extern    _readRegString
 .extern    _parseInteger
 
 _readInteger:   push    rbp
@@ -19,7 +19,7 @@ _readInteger:   push    rbp
 
                 mov     rdi, 256
                 lea     rsi, [rip+inpstr]
-                call    _readString              /* Read a string */
+                call    _readRegString              /* Read a string */
                 
                 mov     rdi, rsi                 /* buffer as first argument */
                 lea     rsi, [rip+readint]           /* location of read integer in memory */
