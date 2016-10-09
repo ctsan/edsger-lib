@@ -1,3 +1,4 @@
+#include OS_SYSCALL_NUMS
 /* void writeBoolean (bool b);
 ; ---------------------------
 ; This function prints a boolean to the standard output.
@@ -18,7 +19,7 @@ _writeBoolean: push  rbp
               or    r8b, r8b            // check if arg is true or false
               jnz   par_true
               mov   byte ptr [rsp], 0x66 //write 'f'
-              jmp   short ok
+              jmp   ok
 par_true:
               mov   byte ptr [rsp], 0x74 //write 't'
 ok:

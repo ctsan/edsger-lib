@@ -17,11 +17,11 @@ _readBoolean:    push    rbp
                 mov     rbp, rsp
                 push    rsi
                 mov     rdi, 256                    // maxstring
-                lea     rsi, [inpstr]
+                lea     rsi, [rip+inpstr]
                 call    _readRegString
                 xor     rax, rax                    // value = false
 loop1:
-                mov     cl, byte [rsi]              // Skip leading blanks
+                mov     cl, byte ptr [rsi]              // Skip leading blanks
                 inc     rsi
                 cmp     cl, 0x20
                 jz      loop1
@@ -32,7 +32,6 @@ loop1:
                 jnz     store
                 mov     rax, 1                      // value = true
 store:
-                mov     al, [rsp]
                 mov     rdi,[rbp+24]
                 mov     byte ptr [rdi], al
 
