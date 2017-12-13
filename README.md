@@ -11,8 +11,7 @@ should stick to the original repo.
 
 ## Functions implemented so far
 
-    readString  : stack int, stack char* -> -
-    writeString : stack char* -> -
+Not documented, sorry.
 
 ## Past Contributors
 
