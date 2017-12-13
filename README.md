@@ -14,8 +14,7 @@ should stick to the original repo.
     readString  : stack int, stack char* -> -
     writeString : stack char* -> -
 
-## Active Maintainers
+## Past Contributors
 
-0. AimTsal
 1. anange
 2. ctsan
