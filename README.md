@@ -1,4 +1,4 @@
-# (WIP) Edsger Library x86/64 (Linux & Mac)
+# Edsger Library x86/64 (Linux & Mac)
 
 This is an x86/64 library for Edsger Programming Language. This lib is a fork of this
 repo: /abenetopoulos/edsger\_lib but it follows a stack oriented approach instead. If
